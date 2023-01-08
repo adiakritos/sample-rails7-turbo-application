@@ -1,0 +1,10 @@
+<h1>Editing post</h1>
+
+<%= turbo_frame_tag "edit_post" do %>
+
+  <%= form_with(model: @post) do |form| %>
+    <%= form.text_area :content %>
+    <%= form.submit %>
+  <% end %>
+
+<% end %>

@@ -1,0 +1,30 @@
+<%= turbo_stream_from @post %>
+
+<%= turbo_frame_tag "title", src: post_path(@post), loading: 'lazy' do %>
+  <p><strong>LOADING...</strong></p>
+<% end %>
+
+<%= turbo_frame_tag "title" do %>
+  <%= turbo_frame_tag "edit_post" do %>
+
+    <div id="<%= dom_id @post %>">
+       <%= @post.content %>
+    </div>
+
+    <p>
+      <%= link_to "Edit", edit_post_path(@post)  %>
+      <%= link_to "Back", posts_path %>
+    </p>
+  <% end %>
+<% end %>
+
+
+<h3>Comments</h3>
+
+<div id="comments">
+  <%= render @post.comments %>
+</div>
+
+<%= turbo_frame_tag "new_comment", src: new_post_comment_path(@post), loading: 'lazy' do %>
+  <p><strong>LOADING...</strong></p>
+<% end %>
